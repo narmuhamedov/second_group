@@ -11,15 +11,14 @@ def blogdetailview(request, id):
     post_detail = get_object_or_404(models.Post, id=id)
     return render(request, 'post_list_detail.html', {'post_detail': post_detail})
 
-#create post
-def create_post_view(request):
+#create
+def create_tvshow_view(request):
     method = request.method
-    form = forms.ShowForm
     if method == "POST":
-        form = forms.ShowForm(request.POST, request.FILES)
-        form.save()
-        return HttpResponse('Фильм успешно добавлен!')
+        form = forms.TvShowForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Фильм успешно добавлен!")
     else:
-        form = forms.ShowForm()
-
-    return render(request, 'add_show.html', {'form':form})
+        form = forms.TvShowForm()
+    return render(request, 'add-tvshow.html', {'form': form})
