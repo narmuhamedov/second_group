@@ -13,21 +13,31 @@
 <div class="container">
     <div class="post">
         <div class="post-image">
-            <img src="{{post_detail.image.url}}" width="400" height="400">
+            <img src="{{object.image.url}}" width="400" height="400">
         </div>
         <div class="post-content">
             <div class="post-header">
-                <h1>{{post_detail.title}}</h1>
+                <h1>{{object.title}}</h1>
             </div>
-            <p>{{post_detail.description}}
+            <p>{{object.description}}
             </p>
-            <p>{{post_detail.created_date}}</p>
-            <p>{{post_detail.updated_date}}</p>
+            <p>{{object.created_date}}</p>
+            <p>{{object.updated_date}}</p>
         </div>
         <button type="button" class="btn btn-outline-success"><a href="/blog/" class="a">Back</a></button>
-        <button type="button" class="btn btn-outline-success"><a href="/blog/{{post_detail.id}}/update/" class="a">Update</a></button>
-        <button type="button" class="btn btn-outline-success"><a href="/blog/{{post_detail.id}}/delete/" class="a">Delete</a></button>
+        <button type="button" class="btn btn-outline-success"><a href="/blog/{{object.id}}/update/" class="a">Update</a></button>
+        <button type="button" class="btn btn-outline-success"><a href="/blog/{{object.id}}/delete/" class="a">Delete</a></button>
     </div>
 </div>
+<center>
+    <table border="4" bgcolor="#7fffd4">
+
+        <tr><th>Комментарий</th><th>Дата создания комента</th><th>Оценка</th></tr>
+        <tr>{% for j in object.comment_object.all %}
+        <td>{{j.text}}</td> <td>{{j.created_date}}</td> <td>{{j.rate}}</td>
+        {% endfor %}</tr>
+
+    </table>
+</center>
 </body>
 </html>
