@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from . import models, forms
 from django.views import generic
 
+
 class BlogView(generic.ListView):
     template_name = 'post_list.html'
     queryset = models.Post.objects.all()
@@ -88,3 +89,18 @@ class BlogDeleteView(generic.DeleteView):
 #     blog_object = get_object_or_404(models.Post, id=id)
 #     blog_object.delete()
 #     return HttpResponse('Блог успешно удален')
+
+
+#Кнопка поиска
+class Search(generic.ListView):
+    template_name = 'post_list.html'
+    context_object_name = 'blog'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return models.Post.objects.filter(title__icontains=self.request.GET.get('q'))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['q'] = self.request.GET.get('q')
+        return context

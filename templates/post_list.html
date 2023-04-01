@@ -42,9 +42,9 @@
           <a class="nav-link disabled">Отключенная</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
-        <button class="btn btn-outline-success" type="submit">Поиск</button>
+      <form action="{% url 'search' %}" method="GET" class="d-flex" role="search"  >
+        <input type="search" type="text" name="q"  class="form-control me-2"   placeholder="Поиск" aria-label="Поиск">
+        <button type="submit" class="btn btn-outline-success" >Поиск</button>
       </form>
     </div>
   </div>
