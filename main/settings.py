@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "blog",
     "parser_app",
     "parser_film",
+    "custom_user",
 
 ]
 

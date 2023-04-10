@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+</head>
+<body>
+<h1>Ты успешно зарегался или авторизовался</h1>
+<div>
+  <ol>
+    {% for i in object_list %}
+    <li>
+      {{i.username}}
+    </li>
+    {% endfor %}
+  </ol>
+</div>
+</body>
+</html>
